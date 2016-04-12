@@ -1,5 +1,8 @@
 package songvisualizer;
 
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+
 public class LinkedList<E> {
     /**
      * This represents a node in a singly linked list. This node stores data
@@ -364,5 +367,56 @@ public class LinkedList<E> {
         }
         result += "}";
         return result;
+    }
+    
+    /**
+     * constructor for iterator inner class
+     * @return iter new iterator for DLL
+     */
+    public Iterator<E> iterator() {
+        LinkedListIterator iter = new LinkedListIterator();
+        return iter;
+    }
+    
+    
+    /**
+     * Iterator Class for Linked List
+     * @author Mostafa Elemary
+     * @version 4.12.2016
+     */
+    public class LinkedListIterator implements Iterator<E> {
+        private Node<E> cursor;
+
+        /**
+         * iterator constructor/setup method
+         */
+        public LinkedListIterator() {
+            cursor = head;
+        }
+
+        /**
+         * next checker method for iterator
+         * @return true or false based on if there is next value
+         */
+        @Override
+        public boolean hasNext() {
+            
+            return cursor.next != null;
+        }
+
+        /**
+         * next method for iterator
+         * @return value at next node
+         */
+        @Override
+        public E next() {
+            if (hasNext()) {
+                cursor = cursor.next;
+                return cursor.data;
+            }
+            else {
+                throw new NoSuchElementException();
+            }
+        }
     }
 }
