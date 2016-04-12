@@ -2,78 +2,69 @@ package songvisualizer;
 
 import java.io.File;
 import java.util.Scanner;
+import methods.Song;
+import rangeCheck.Person;
 
 public class FileReader {
+    
+    public FileReader(String songFile, String personFile)
+    {
+        LinkedList<Song> songs = readData(songFile, personFile);
+        SongList newSongList = new SongList(songs);
+        Window window = new Window(newSongList);
+    }
 
     
-    public SongList readData(String songFile, String personFile) {
+    public LinkedList<Song> readData(String songFile, String personFile) {
         try {
             Scanner songScanner = new Scanner(new File(songFile));
             Scanner personScanner = new Scanner(new File(personFile));
             
-            Scanner personCounter = new Scanner(new File(personFile));
-            int numberPeople = 0;
-            while (personCounter.hasNextLine())
-            {
-                personCounter.nextLine();
-                numberPeople++;
-            }
+            LinkedList<Person> personList = new LinkedList<Person>();
+            LinkedList<Song> songList = new LinkedList<Song>();
             
-            Scanner songCounter = new Scanner (new File (songFile));
-            int numberSong = 0;
-            while (songCounter.hasNextLine())
-            {
-                songCounter.nextLine();
-                numberSong++;
-            }
-            
-            Person[] personArray = new Person[numberPeople];
-            Song[] songArray = new Song[numberSong];
-            
-            int i = 0;
             while (personScanner.hasNextLine()) {
                 personScanner.nextLine();
-                personScanner.next();
-                personScanner.next();
                 
-                String major = personScanner.next();
-                String region = personScanner.next();
-                String hobby = personScanner.next();
+                String[] input = personScanner.nextLine().split(",");
                 
-                int j = 0;
-                String[] critique = new String[2*numberSong];
-                while (personScanner.hasNext())
+                String major = input[2];
+                String region = input[3];
+                String hobby = input[4];
+                String[] critique = new String[input.length - 5];
+                
+                for (int i = 5; i < input.length; i++)
                 {
-                    critique[j] = personScanner.next();
-                    j++;
+                    critique[i] = input[i];
                 }
                 
                 Person temp = new Person(major, region, hobby, critique);
-                personArray[i] = temp;
-                i++;
-                
+                personList.add(temp);
             }
             personScanner.close();
             
-            i = 0;
+            int i = 0;
             while (songScanner.hasNextLine())
             {
                 songScanner.nextLine();
-                String title = songScanner.next();
-                String artist = songScanner.next();
-                String year = songScanner.next();
-                String genre = songScanner.next();
                 
-                Song temp = new Song(title, artist, year, genre);
-                songArray[i] = temp;
+                String[] input = songScanner.nextLine().split(",");
+                
+                String title = input[0];
+                String artist = input[1];
+                String year = input[2];
+                String genre = input[3];
+                
+                Song temp = new Song(title, genre, artist, year, personList, i);
+                songList.add(temp);
                 i++;
             }
+            songScanner.close();
+            return songList;
         }
         catch (Exception e) {
             System.out.println(e.toString());
             System.exit(0);
         }
-        return SongList(personArray, songArray);
     }
-}
 }
