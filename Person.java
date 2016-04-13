@@ -9,9 +9,9 @@ package songvisualizer;
  * @version 2016.04.12
  */
 public class Person {
-    private Major major;
-    private Region region;
-    private Hobby hobby;
+    private MajorEnum major;
+    private RegionEnum region;
+    private HobbyEnum hobby;
     private String songCritique[];
 
     public Person(String major, String region, String hobby,
@@ -25,16 +25,16 @@ public class Person {
     public void setMajor(String major) {
         switch (major) {
         case ("Computer Science"):
-            this.major = Major.COMPUTER_SCIENCE;
+            this.major = MajorEnum.COMPUTER_SCIENCE;
             break;
         case ("Mat or CMDA"):
-            this.major = Major.MATH_OR_CMDA;
+            this.major = MajorEnum.MATH_OR_CMDA;
             break;
         case ("Other Engineering"):
-            this.major = Major.OTHER_ENGINEERING;
+            this.major = MajorEnum.OTHER_ENGINEERING;
             break;
         default:
-            this.major = Major.OTHER;
+            this.major = MajorEnum.OTHER;
             break;
         }
     }
@@ -42,16 +42,16 @@ public class Person {
     public void setRegion(String region) {
         switch (region) {
         case ("Northeast"):
-            this.region = Region.NORTHEAST;
+            this.region = RegionEnum.NORTHEAST;
             break;
         case ("Southeast"):
-            this.region = Region.SOUTHEAST;
+            this.region = RegionEnum.SOUTHEAST;
             break;
         case ("Outside of United States"):
-            this.region = Region.OUTSIDE_US;
+            this.region = RegionEnum.OUTSIDE_US;
             break;
         default:
-            this.region = Region.REST_OF_US;
+            this.region = RegionEnum.REST_OF_US;
             break;
         }
     }
@@ -59,29 +59,29 @@ public class Person {
     public void setHobby(String hobby) {
         switch (hobby) {
         case ("art"):
-            this.hobby = Hobby.ART;
+            this.hobby = HobbyEnum.ART;
             break;
         case ("music"):
-            this.hobby = Hobby.MUSIC;
+            this.hobby = HobbyEnum.MUSIC;
             break;
         case ("sports"):
-            this.hobby = Hobby.SPORTS;
+            this.hobby = HobbyEnum.SPORTS;
             break;
         default:
-            this.hobby = Hobby.READ;
+            this.hobby = HobbyEnum.READ;
             break;
         }
     }
 
-    public Major getMajor() {
+    public MajorEnum getMajor() {
         return major;
     }
 
-    public Region getRegion() {
+    public RegionEnum getRegion() {
         return region;
     }
 
-    public Hobby getHobby() {
+    public HobbyEnum getHobby() {
         return hobby;
     }
 

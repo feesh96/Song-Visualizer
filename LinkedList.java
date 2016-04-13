@@ -371,7 +371,7 @@ public class LinkedList<E> {
     
     /**
      * constructor for iterator inner class
-     * @return iter new iterator for DLL
+     * @return iter new iterator for LList
      */
     public Iterator<E> iterator() {
         LinkedListIterator iter = new LinkedListIterator();
@@ -385,12 +385,15 @@ public class LinkedList<E> {
      * @version 4.12.2016
      */
     public class LinkedListIterator implements Iterator<E> {
+        
         private Node<E> cursor;
 
         /**
          * iterator constructor/setup method
          */
         public LinkedListIterator() {
+            
+            cursor = new Node<E>(null);
             cursor.setNext(head);
         }
 

@@ -4,7 +4,7 @@ import java.security.InvalidParameterException;
 import java.util.Iterator;
 
 public class Song {
-    
+
     private String title;
     private String genre;
     private String artist;
@@ -12,8 +12,9 @@ public class Song {
     private int originalIndex;
     private Iterator<Person> personIterator;
 
-    
-    public Song(String title, String genre, String artist, String releaseYear, LinkedList<Person> personList, int originalIndex) {
+
+    public Song(String title, String genre, String artist, String releaseYear,
+            LinkedList<Person> personList, int originalIndex) {
         this.title = title;
         this.genre = genre;
         this.artist = artist;
@@ -21,24 +22,24 @@ public class Song {
         this.originalIndex = originalIndex;
         personIterator = personList.iterator();
     }
-    
+
     public String getTitle() {
         return title;
     }
-    
+
     public String getGenre() {
         return genre;
     }
-    
+
     public String getArtist() {
         return artist;
     }
-    
-    public String getReleaseYear() {
+
+    public String getYear() {
         return releaseYear;
     }
-    
-    public int getByMajor(Major major, String likedOrHeard) {
+
+    public int getByMajor(MajorEnum major, String likedOrHeard) {
         if (likedOrHeard.equals("liked")) {
             return getLikedByMajor(major);
         }
@@ -46,11 +47,12 @@ public class Song {
             return getHeardByMajor(major);
         }
         else {
-            throw new InvalidParameterException("Did not write 'liked' or 'heard'");
+            throw new InvalidParameterException(
+                    "Did not write 'liked' or 'heard'");
         }
     }
-    
-    public int getByRegion(Region region, String likedOrHeard) {
+
+    public int getByRegion(RegionEnum region, String likedOrHeard) {
         if (likedOrHeard.equals("liked")) {
             return getLikedByRegion(region);
         }
@@ -58,11 +60,12 @@ public class Song {
             return getHeardByRegion(region);
         }
         else {
-            throw new InvalidParameterException("Did not write 'liked' or 'heard'");
+            throw new InvalidParameterException(
+                    "Did not write 'liked' or 'heard'");
         }
     }
-    
-    public int getByHobby(Hobby hobby, String likedOrHeard) {
+
+    public int getByHobby(HobbyEnum hobby, String likedOrHeard) {
         if (likedOrHeard.equals("liked")) {
             return getLikedByHobby(hobby);
         }
@@ -70,11 +73,12 @@ public class Song {
             return getHeardByHobby(hobby);
         }
         else {
-            throw new InvalidParameterException("Did not write 'liked' or 'heard'");
+            throw new InvalidParameterException(
+                    "Did not write 'liked' or 'heard'");
         }
     }
-    
-    private int getLikedByMajor(Major major) {
+
+    private int getLikedByMajor(MajorEnum major) {
         int liked = 0;
         while (personIterator.hasNext()) {
             Person person = personIterator.next();
@@ -86,8 +90,8 @@ public class Song {
         }
         return liked;
     }
-    
-    private int getHeardByMajor(Major major) {
+
+    private int getHeardByMajor(MajorEnum major) {
         int heard = 0;
         while (personIterator.hasNext()) {
             Person person = personIterator.next();
@@ -99,8 +103,8 @@ public class Song {
         }
         return heard;
     }
-    
-    private int getLikedByRegion(Region region) {
+
+    private int getLikedByRegion(RegionEnum region) {
         int liked = 0;
         while (personIterator.hasNext()) {
             Person person = personIterator.next();
@@ -112,8 +116,8 @@ public class Song {
         }
         return liked;
     }
-    
-    private int getHeardByRegion(Region region) {
+
+    private int getHeardByRegion(RegionEnum region) {
         int heard = 0;
         while (personIterator.hasNext()) {
             Person person = personIterator.next();
@@ -125,8 +129,8 @@ public class Song {
         }
         return heard;
     }
-    
-    private int getLikedByHobby(Hobby hobby) {
+
+    private int getLikedByHobby(HobbyEnum hobby) {
         int liked = 0;
         while (personIterator.hasNext()) {
             Person person = personIterator.next();
@@ -138,8 +142,8 @@ public class Song {
         }
         return liked;
     }
-    
-    private int getHeardByHobby(Hobby hobby) {
+
+    private int getHeardByHobby(HobbyEnum hobby) {
         int heard = 0;
         while (personIterator.hasNext()) {
             Person person = personIterator.next();
