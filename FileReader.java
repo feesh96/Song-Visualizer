@@ -2,8 +2,6 @@ package songvisualizer;
 
 import java.io.File;
 import java.util.Scanner;
-import methods.Song;
-import rangeCheck.Person;
 
 public class FileReader {
     
@@ -65,6 +63,8 @@ public class FileReader {
         catch (Exception e) {
             System.out.println(e.toString());
             System.exit(0);
+            return null;
         }
     }
 }
+

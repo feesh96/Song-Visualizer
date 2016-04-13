@@ -391,7 +391,7 @@ public class LinkedList<E> {
          * iterator constructor/setup method
          */
         public LinkedListIterator() {
-            cursor = head;
+            cursor.setNext(head);
         }
 
         /**
@@ -420,3 +420,4 @@ public class LinkedList<E> {
         }
     }
 }
+

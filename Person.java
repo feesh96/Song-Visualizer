@@ -86,6 +86,6 @@ public class Person {
     }
 
     public String getCritiqueAt(int index) {
-        return songCritique[2 * index] + songCritique[2 * index + 1];
+        return songCritique[index];
     }
 }
