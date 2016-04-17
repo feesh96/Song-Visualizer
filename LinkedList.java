@@ -1,8 +1,15 @@
-package songvisualizer;
+package prj5;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+/**
+ * A Linked Implementation of a List.
+ *
+ * @author  Matthew Fishman <feesh96>
+ * @version 4/15/2016
+ * @param <E> generic
+ */
 public class LinkedList<E> {
     /**
      * This represents a node in a singly linked list. This node stores data
@@ -168,7 +175,7 @@ public class LinkedList<E> {
         // other cases
         else {
             while (current.next != null) {
-                current = current.next;
+                current = current.next();
             }
             current.setNext(new Node<E>(obj));
         }
@@ -217,7 +224,7 @@ public class LinkedList<E> {
             current = current.next;
         }
 
-        // this accounts for the isEmpty case or the object does not exist
+        //this accounts for the isEmpty case or the object does not exist
         return false;
     }
 
@@ -249,7 +256,8 @@ public class LinkedList<E> {
             }
 
             // account for 2+ size
-            while (null != current) {
+            boolean found = false;
+            while (!found) {
                 if (index == currentIndex + 1) {
                     Node<E> newNext = current.next.next;
                     current.setNext(newNext);
@@ -260,8 +268,7 @@ public class LinkedList<E> {
                 current = current.next;
             }
 
-            // if the element was never found, this also handles empty case
-            return false;
+            return found;
         }
     }
 
