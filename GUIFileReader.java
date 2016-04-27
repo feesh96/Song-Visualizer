@@ -24,7 +24,7 @@ public class GUIFileReader {
     {        
         LinkedList<Song> songs = readData(personFile, songFile);
         SongList newSongList = new SongList(songs);
-        //new DisplayWindow(newSongList);
+        new GUIDisplayWindow(newSongList);
         printData(newSongList);
     }
 
@@ -149,4 +149,3 @@ public class GUIFileReader {
         }
     }
 }
-

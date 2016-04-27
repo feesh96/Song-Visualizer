@@ -1,6 +1,5 @@
 package prj5;
 
-import static org.junit.Assert.*;
 import student.TestCase;
 
 /**

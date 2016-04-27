@@ -20,7 +20,8 @@ public class Input {
             new GUIFileReader(args[0], args[1]);
         }
         else {
-            new GUIFileReader("SongList.csv", "MusicSurvey.csv");
+            new GUIFileReader("MusicSurvey.csv", "SongList.csv");
         }
     }
 }
+

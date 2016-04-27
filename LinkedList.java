@@ -10,7 +10,7 @@ import java.util.NoSuchElementException;
  * @version 4/15/2016
  * @param <E> generic
  */
-public class LinkedList<E> {
+public class LinkedList<E> implements Iterable<E> {
     /**
      * This represents a node in a singly linked list. This node stores data
      * along with having a pointer to the next node in the list
@@ -430,4 +430,5 @@ public class LinkedList<E> {
         }
     }
 }
+
 

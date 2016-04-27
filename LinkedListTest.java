@@ -286,3 +286,4 @@ public class LinkedListTest extends TestCase {
         assertTrue(thrown instanceof NoSuchElementException);
     }
 }
+
