@@ -9,10 +9,10 @@ import CS2114.Window;
 import CS2114.WindowSide;
 
 /**
- * Displays the project.
+ * Displays the project on a GUI Window
  *
- * @author Sean McHugh (seanfmch)
- * @version Apr 15, 2016
+ * @author Mostafa Elemary <melemary>
+ * @version Apr 27, 2016
  */
 public class GUIDisplayWindow {
 
@@ -36,10 +36,11 @@ public class GUIDisplayWindow {
     private int pageNum;
 
     /**
-     * Instantiates field.
+     * Window default constructor
+     * Instantiates fields and places buttons on window
+     * Allows buttons to work
      * 
-     * @param songs
-     *            SongList
+     * @param songs SongList of all songs being displaced on window
      */
     public GUIDisplayWindow(SongList songs) {
         window = new Window("Project 5");
@@ -85,7 +86,8 @@ public class GUIDisplayWindow {
     }
 
     /**
-     * Creates the legend.
+     * Creates the legend based on what is being represented
+     * @param representBy what is being represented in the glyphs
      */
     public void createLegend(String representBy) {
         Shape border = new Shape(650, 100, 100, 150, Color.WHITE);
@@ -173,50 +175,44 @@ public class GUIDisplayWindow {
         window.addShape(border);
     }
 
-    /*
-    public void testGlyph() {
-        TextShape songTitle = new TextShape(30, 10, "Hotel California");
-        songTitle.setBackgroundColor(Color.WHITE);
-
-        TextShape artist = new TextShape(30, 25, "by The Eagles");
-        artist.setBackgroundColor(Color.WHITE);
-
-        Shape separator = new Shape(80, 40, 4, 40, Color.BLACK);
-
-        Shape purple = new Shape(60, 43, 70, 8, Color.MAGENTA);
-
-        Shape blue = new Shape(58, 51, 70, 8, Color.BLUE);
-
-        Shape orange = new Shape(53, 59, 80, 8, Color.ORANGE);
-
-        Shape green = new Shape(60, 67, 70, 8, Color.GREEN);
-
-
-        window.addShape(songTitle);
-        window.addShape(artist);
-        window.addShape(separator);
-        window.addShape(purple);
-        window.addShape(blue);
-        window.addShape(orange);
-        window.addShape(green);
-    }
-    */
-    
+    /**
+     * Hobby button method
+     * updates glyph list based on hobby representation
+     * @param button what button being pressed
+     */
     public void clickedHobby(Button button) {
         globalRepresentBy = "Hobby";
         updateGlyphList(globalRepresentBy, globalSortBy);
     }
     
+    /**
+     * Major button method
+     * updates glyph list based on major representation
+     * @param button the button being pressed 
+     */
     public void clickedMajor(Button button) {
         globalRepresentBy = "Major";
         updateGlyphList(globalRepresentBy, globalSortBy);
     }
     
+    /**
+     * Region button method
+     * updates glyph list based on region representation 
+     * @param button the button being pressed
+     */
     public void clickedRegion(Button button) {
         globalRepresentBy = "Region";
         updateGlyphList(globalRepresentBy, globalSortBy);
     }
     
+    /**
+     * Glyph update helper method
+     * clears all shapes on the screen and generates new legend and glyphs
+     * @param representBy what is being represented based on button pressed
+     * @param sortBy how to sort the glyphs
+     * note: globalRepresentBy and globalSortBy are both used so that if a
+     * sort button is pressed, representation is maintained and vice versa
+     */
     public void updateGlyphList(String representBy, String sortBy) {
         window.removeAllShapes();
         createLegend(representBy);
@@ -254,18 +250,33 @@ public class GUIDisplayWindow {
         }
     }
     
+    /**
+     * Sort method for artists
+     * resorts songList and generates new shapes on window
+     * @param button button being pressed
+     */
     public void clickedArtist(Button button) {
         songList.sortBy("Artist");
         globalSortBy = "Artist";
         updateGlyphList(globalRepresentBy, globalSortBy);
     }
     
+    /**
+     * Sort method for title
+     * resorts songList and generates new shapes on window
+     * @param button button being pressed
+     */
     public void clickedTitle(Button button) {
         songList.sortBy("Title");
         globalSortBy = "Title";
         updateGlyphList(globalRepresentBy, globalSortBy);
     }
     
+    /**
+     * Sort method for genre
+     * resorts songList and generates new shapes on window
+     * @param button button being pressed
+     */
     public void clickedGenre(Button button) {
         songList.sortBy("Genre");
         globalSortBy = "Genre";
@@ -273,22 +284,43 @@ public class GUIDisplayWindow {
         
     }
     
+    /**
+     * Sort method for year
+     * resorts songList and generates new shapes on window
+     * @param button button being pressed
+     */
     public void clickedYear(Button button) {
         songList.sortBy("Year");
         globalSortBy = "Year";
         updateGlyphList(globalRepresentBy, globalSortBy);
     }
     
+    /**
+     * Next button for window
+     * shows next (up to) 6 glyphs
+     * if reaches end of list, updateGlyphList method disables the button
+     * @param button button being pressed
+     */
     public void clickedNext(Button button) {
         pageNum++;
         updateGlyphList(globalRepresentBy, globalSortBy);
     }
     
+    /**
+     * Previous button for window
+     * Shows previous 6 glyphs
+     * if at beginning of the list, updateGlyphList method disables the button
+     * @param button button being pressed
+     */
     public void clickedPrev(Button button) {
         pageNum--;
         updateGlyphList(globalRepresentBy, globalSortBy);
     }
     
+    /**
+     * Quit button closes window
+     * @param button button being pressed
+     */
     public void clickedQuit(Button button) {
         System.exit(0);
     }
